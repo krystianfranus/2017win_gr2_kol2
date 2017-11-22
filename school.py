@@ -1,4 +1,4 @@
-
+import numpy as np
 
 
 class Student:
@@ -9,6 +9,7 @@ class Student:
 
 	def __str__(self):
 		return self.first_name + ' ' + self.last_name
+
 
 class Course:
 	
@@ -24,6 +25,7 @@ class Course:
 			print 'Cannot add new student. Limit has been reached.'
 		else:
 			self.students.append(student)
+			self.no_students += 1
 
 	def add_score(self, score, student):
 			self.scores[student] = score
@@ -31,5 +33,20 @@ class Course:
 	def students_list(self):
 		return self.students
 
+	def print_scores(self):
+		print 'Students scores in %s:' % (self.name)
+		for student, score in self.scores.items():
+			print '- %s: %.1f' % (student, score)
+
+	def score_average(self):
+
+		if self.scores:
+			average = np.mean([value for key,value in self.scores.items()])
+			return average
+		else:
+			return None
+		
 	def __str__(self):
 		return self.name
+
+

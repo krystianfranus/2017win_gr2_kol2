@@ -14,47 +14,22 @@
 # data in text files (YAML, JSON).
 # If you have even more courage, try implementing user interface.
 
-from lib import Student, Course
-
+from menu import SchoolMenu
+from init import initialize_school
 
 
 if __name__ == "__main__":
 
-	maths = Course(name='Maths', max_no_students=32)
-	physics = Course(name='Physics', max_no_students=30)
-	computer_science = Course(name='Computer science', max_no_students=31)
+	data = initialize_school()
 
-	student1 = Student(first_name='Tom', last_name='Perry')
-	student2 = Student(first_name='John', last_name='Smith')
-
-	courses = [maths, physics, computer_science]
-	students = [student1, student2]
-
-	maths.add_student(student1)
-	physics.add_student(student2)
-	computer_science.add_student(student1)
-	computer_science.add_student(student2)
-
-
-	print 'Welcome in our school.'
-
+	print 'Welcome in our school'
 
 	while(True):
+		menu = SchoolMenu(data)
+		menu.panel()
 
-		print 'What do you want to do?\n0) Exit\n1) Print all courses\n2) Print all students' 
+		menu.response()()
 
-		x = int(input('Response: '))
-
-		if(x == 0):
-			break
-
-		if(x == 1):
-			for course in courses:
-				print '-' + str(course)
-
-		if(x == 2):
-			for student in students:
-				print '-' + str(student)
 
 
 
